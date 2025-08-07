@@ -1,9 +1,9 @@
-function [S] = count_order_param(spike1)
-params = model_parameters();
-fi = zeros(params.N_neurons,params.n);
-S = zeros(params.n, 1);
+function [S] = count_order_param(spike1, N_neurons, n)
 
-for j = 1:params.N_neurons
+fi = zeros(N_neurons,n);
+S = zeros(n, 1);
+
+for j = 1:N_neurons
     k = spike1(spike1(:,2)==j,1);
     k = uint32(k);
     if ~isempty(k)
@@ -23,9 +23,9 @@ fi = 2*pi*fi;
 % S = abs(real(sum(Sq)/1000));
 
 %% 2
-for i = 1 : params.n
+for i = 1 : n
     S(i,1) = sum( cos( pdist(fi(:,i),'minkowski',1) ) );
 end
-S = 0.5 + S / params.N_neurons / (params.N_neurons-1);
+S = 0.5 + S / N_neurons / (N_neurons-1);
 
 end
