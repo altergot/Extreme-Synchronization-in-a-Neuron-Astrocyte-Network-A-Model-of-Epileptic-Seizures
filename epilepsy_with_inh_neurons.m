@@ -27,4 +27,4 @@ for i = 1:params.n
 end
 toc;
 
-[S] = count_order_param(model.spike1, params.N_neurons, params.N_neurons);
+[S] = count_order_param(model.spike1, params.N_neurons, params.n);
